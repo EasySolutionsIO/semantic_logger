@@ -118,7 +118,8 @@ module SemanticLogger
       def call(log, logger)
         h = default_formatter.call(log, logger)
 
-        h[:short_message] = h.delete(:message) || log.exception.message
+        h[:short_message] = h.delete(:message)
+        h[:short_message] ||= log.exception.message if log.exception
         h[:level]         = logger.level_map[log.level]
         h[:level_str]     = log.level.to_s
         h[:duration_str]  = h.delete(:duration)
