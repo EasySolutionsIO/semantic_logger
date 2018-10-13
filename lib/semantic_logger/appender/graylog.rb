@@ -123,7 +123,7 @@ module SemanticLogger
           exception_message = exception.message
         end
 
-        h[:short_message] = h.delete(:message) || exception_message || ''
+        h[:short_message] = h.delete(:message) || exception_message || h[:payload]
         h[:level]         = logger.level_map[log.level]
         h[:level_str]     = log.level.to_s
         h[:duration_str]  = h.delete(:duration)
